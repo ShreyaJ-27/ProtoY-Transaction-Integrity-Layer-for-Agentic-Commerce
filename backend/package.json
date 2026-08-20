@@ -7,7 +7,9 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:engines": "tsx src/test-engines.ts",
+    "test:http": "tsx src/test-http.ts"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +20,7 @@
     "@x402-avm/avm": "^2.6.1",
     "@x402-avm/core": "^2.6.1",
     "@x402-avm/hono": "^2.6.1",
+    "axios": "^1.19.0",
     "dotenv": "^17.4.2",
     "hono": "^4.13.3"
   },
