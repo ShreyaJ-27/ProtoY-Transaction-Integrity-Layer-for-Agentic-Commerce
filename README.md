@@ -1342,11 +1342,4 @@ See `LICENSE` for the complete Apache License 2.0 text.
 >
 > **Make them earn the right to pay.**
 
-```
-
-**One important correction:** in your actual repo, put the **full official Apache 2.0 text** in a root-level `LICENSE` file rather than relying only on the README notice. Apache's own guidance recommends this. :contentReference[oaicite:1]{index=1}
-
-:contentReference[oaicite:2]{index=2}
-```
-
 [1]: https://www-eu.apache.org/legal/apply-license?utm_source=chatgpt.com "Applying the Apache license, version 2.0 | Apache Software Foundation"
