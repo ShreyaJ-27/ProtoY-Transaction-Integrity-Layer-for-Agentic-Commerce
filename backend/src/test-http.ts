@@ -15,33 +15,34 @@ async function testHttpEndpoints() {
   const infoRes = await axios.get(`${BASE_URL}/info`);
   console.log('Status:', infoRes.status, 'Data:', infoRes.data);
 
-  // 3. Test GET /api/test without payment (Expected 402)
-  console.log('\n3. Testing GET /api/test (No Payment Signature) -> Expecting 402...');
+  // 3. Test the real protected endpoint without payment (Expected 402)
+  console.log('\n3. Testing GET /api/v1/research (No Payment Signature) -> Expecting 402...');
   try {
-    await axios.get(`${BASE_URL}/api/test`);
+    await axios.get(`${BASE_URL}/api/v1/research`, { params: { query: 'blockchain' } });
     console.error('FAILED: Expected 402 but succeeded');
   } catch (err: any) {
     if (err.response && err.response.status === 402) {
       console.log('PASSED: Received 402 Payment Required');
-      console.log('Payment-Response Header:', err.response.headers['payment-response']);
+      console.log('Payment-Required Header:', Boolean(err.response.headers['payment-required'] || err.response.headers['x-payment-required']));
       console.log('Response Body:', err.response.data);
     } else {
       console.error('FAILED with unexpected error:', err.message);
     }
   }
 
-  // 4. Test GET /api/test with invalid payment signature (Expected 403)
-  console.log('\n4. Testing GET /api/test (Invalid Signature) -> Expecting 403...');
+  // 4. Test the real protected endpoint with an invalid signature (Expected 402)
+  console.log('\n4. Testing GET /api/v1/research (Invalid Signature) -> Expecting 402...');
   try {
-    await axios.get(`${BASE_URL}/api/test`, {
+    await axios.get(`${BASE_URL}/api/v1/research`, {
+      params: { query: 'blockchain' },
       headers: {
-        'X-Payment-Signature': 'invalid_mock_signature_test'
+        'payment-signature': 'invalid_mock_signature_test'
       }
     });
-    console.error('FAILED: Expected 403 but succeeded');
+    console.error('FAILED: Expected 402 but succeeded');
   } catch (err: any) {
-    if (err.response && err.response.status === 403) {
-      console.log('PASSED: Received 403 Forbidden for invalid payment');
+    if (err.response && err.response.status === 402) {
+      console.log('PASSED: Received 402 Payment Required for invalid payment');
       console.log('Response Body:', err.response.data);
     } else {
       console.error('FAILED with unexpected error:', err.message);

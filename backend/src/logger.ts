@@ -35,3 +35,23 @@ export function logProvider(msg: string): void {
 export function logInfo(msg: string): void {
   console.log(`${colors.gray}[${getTimestamp()}]${colors.reset} ${colors.blue}${colors.bright}[INFO]${colors.reset} ${msg}`);
 }
+
+export function logAgent(msg: string): void {
+  console.log(`${colors.gray}[${getTimestamp()}]${colors.reset} ${colors.magenta}${colors.bright}[AGENT]${colors.reset} ${msg}`);
+}
+
+export function logAlgorand(msg: string): void {
+  console.log(`${colors.gray}[${getTimestamp()}]${colors.reset} ${colors.green}${colors.bright}[ALGORAND]${colors.reset} ${msg}`);
+}
+
+export function logX402(msg: string): void {
+  console.log(`${colors.gray}[${getTimestamp()}]${colors.reset} ${colors.cyan}${colors.bright}[X402]${colors.reset} ${msg}`);
+}
+
+export function logOutcome(msg: string): void {
+  console.log(`${colors.gray}[${getTimestamp()}]${colors.reset} ${colors.yellow}${colors.bright}[OUTCOME]${colors.reset} ${msg}`);
+}
+
+export function logMemory(msg: string): void {
+  console.log(`${colors.gray}[${getTimestamp()}]${colors.reset} ${colors.white}${colors.bright}[MEMORY]${colors.reset} ${msg}`);
+}

@@ -9,19 +9,26 @@
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
     "test:engines": "tsx src/test-engines.ts",
-    "test:http": "tsx src/test-http.ts"
+    "test:http": "tsx src/test-http.ts",
+    "test:e2e": "tsx src/tests/e2e.test.ts",
+    "test:agent-e2e": "tsx src/test-agent-e2e.ts",
+    "test": "tsx src/tests/e2e.test.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@algorandfoundation/xhd-wallet-api": "^2.0.0-canary.1",
     "@hono/node-server": "^2.1.1",
     "@x402-avm/avm": "^2.6.1",
     "@x402-avm/core": "^2.6.1",
     "@x402-avm/hono": "^2.6.1",
+    "algosdk": "^3.7.0",
     "axios": "^1.19.0",
+    "bip39": "^3.1.0",
     "dotenv": "^17.4.2",
+    "groq-sdk": "^1.5.0",
     "hono": "^4.13.3"
   },
   "devDependencies": {
