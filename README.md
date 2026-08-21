@@ -1,693 +1,493 @@
-# Proto-Y — Autonomous Transaction Integrity Layer for Agentic Commerce
+# ◉ Proto-Y
 
-> **Making autonomous payments safer, economically rational, and outcome-aware.**
+### Transaction Integrity Layer for Agentic Commerce
 
-Proto-Y is an **AI-powered transaction integrity layer for agentic commerce**.
+> **AI agents can decide what to buy. Proto-Y decides whether that transaction should be allowed to happen.**
 
-It sits between an AI agent and paid services, giving the agent the ability to:
-
-- Understand what it is trying to accomplish
-- Evaluate transaction risk before spending
-- Compare providers based on cost, reputation, and reliability
-- Execute payments through the **x402 protocol**
-- Settle payments on **Algorand**
-- Verify whether the paid service actually delivered a useful result
-- Update provider reputation based on real outcomes
-- Store transaction experiences as agent memory
-- Use those experiences to make better future decisions
-
-Proto-Y is designed around one core principle:
-
-> **Groq proposes. Proto-Y verifies. The payment only happens when the transaction passes the integrity checks.**
+[![Live Frontend](https://img.shields.io/badge/Live-Frontend-65E6FF?style=for-the-badge)](https://proto-y.vercel.app/)
+[![Backend](https://img.shields.io/badge/API-Render-9B8CFF?style=for-the-badge)](https://protoy-transaction-integrity-layer-for.onrender.com/)
+[![Network](https://img.shields.io/badge/Algorand-TestNet-36E0A0?style=for-the-badge)](https://testnet.algoexplorer.io/)
+[![License](https://img.shields.io/badge/License-Apache--2.0-EAF2F7?style=for-the-badge)](LICENSE)
 
 ---
 
-## 🚀 Project Status
+## ✦ Live Demo
 
-### Current implementation
+### ◉ Control Room
 
-| Layer | Status |
-|---|---|
-| AI Agent / Groq | ✅ Implemented |
-| Intent Analysis | ✅ Implemented |
-| Risk Engine | ✅ Implemented |
-| Economic Optimization | ✅ Implemented |
-| Provider Selection | ✅ Implemented |
-| x402 Protocol | ✅ Implemented |
-| Real Algorand TestNet Settlement | ✅ Verified |
-| Outcome Verification | ✅ Implemented |
-| Reputation Tracking | ✅ Implemented |
-| Agent Memory | ✅ Implemented |
-| Full Agent Orchestration | ✅ Implemented |
-| End-to-End Tests | ✅ Passing |
-| Frontend | ⏳ Not included in this version |
-| Algorand MainNet | ⏳ Planned |
+**https://proto-y.vercel.app/**
+
+### ◉ Backend API
+
+**https://protoy-transaction-integrity-layer-for.onrender.com/**
 
 ---
 
-# 🧠 The Problem
+# 01 — What is Proto-Y?
 
-AI agents are increasingly capable of acting autonomously.
+Proto-Y is a **transaction integrity layer for autonomous AI agents**.
 
-They can:
+As AI agents move from generating recommendations to actually spending money, a new problem appears:
 
-- call APIs,
-- purchase services,
-- retrieve information,
-- execute workflows,
-- and make payments.
+> **How do we make autonomous transactions trustworthy?**
 
-But autonomous payment introduces a fundamental problem:
+An agent may have a legitimate goal but still:
 
-### An agent can successfully pay for something without knowing whether the transaction was actually good.
+- misunderstand the user's intent
+- select an inappropriate provider
+- overspend
+- encounter malicious or manipulated instructions
+- choose poor economic outcomes
+- trigger an unsafe payment
+- receive an unreliable result
+- fail to verify what happened after payment
 
-A traditional payment flow looks like:
+Proto-Y sits between the **agent's intention** and the **financial transaction**.
+
+It evaluates the transaction before allowing execution and creates a structured path through:
 
 ```text
-Agent
-  ↓
-Find API
-  ↓
-Pay
-  ↓
-Receive Response
+REASONING
+    ↓
+INTENT
+    ↓
+RISK
+    ↓
+ECONOMICS
+    ↓
+PROVIDER
+    ↓
+PAYMENT
+    ↓
+SETTLEMENT
+    ↓
+OUTCOME
+    ↓
+MEMORY
 ````
 
-There is very little intelligence between the agent's intention and its spending decision.
+The result is an autonomous transaction that is not simply:
 
-The agent may:
+> "Agent decided → money moved"
 
-* choose an expensive provider,
-* pay a low-reputation service,
-* repeat failed transactions,
-* spend too much,
-* interact with a suspicious request,
-* or pay successfully for a poor-quality result.
+but:
 
-Proto-Y introduces a transaction integrity layer between the agent and the payment.
+> **"Agent proposed → Proto-Y evaluated → transaction executed → result verified → experience retained."**
 
 ---
 
-# 💡 The Proto-Y Approach
+# 02 — The Core Idea
 
-Proto-Y transforms:
+## Agentic Commerce Needs an Integrity Layer
 
-```text
-Agent → Pay → Hope
-```
+Traditional payment systems primarily answer:
 
-into:
+> **Can this payment be processed?**
 
-```text
-Agent Goal
-    ↓
-AI Intent Understanding
-    ↓
-Risk Evaluation
-    ↓
-Economic Analysis
-    ↓
-Provider Selection
-    ↓
-x402 Payment Authorization
-    ↓
-Algorand Settlement
-    ↓
-Service Execution
-    ↓
-Outcome Verification
-    ↓
-Reputation Update
-    ↓
-Agent Memory
-    ↓
-Better Future Decisions
-```
+Proto-Y asks a broader question:
 
-The transaction is therefore evaluated **before, during, and after payment**.
+> **Should this autonomous transaction happen at all?**
+
+The system evaluates the transaction across multiple dimensions before execution.
+
+### Intent
+
+What is the agent actually trying to accomplish?
+
+### Risk
+
+Is the proposed action safe and policy-compliant?
+
+### Economics
+
+Is the transaction economically reasonable?
+
+### Provider
+
+Which provider best satisfies the request?
+
+### Payment
+
+How should the transaction be authorized?
+
+### Settlement
+
+Did the payment actually settle?
+
+### Outcome
+
+Was the requested result successfully delivered?
+
+### Memory
+
+What should the agent learn from the transaction?
 
 ---
 
-# 🏗️ Architecture
+# 03 — Architecture
 
 ```text
-                         USER / AI AGENT
-                               │
-                               ▼
-                     ┌───────────────────┐
-                     │   Groq AI Agent   │
-                     │                   │
-                     │ Goal → Intent     │
-                     │ Decision Summary  │
-                     └─────────┬─────────┘
-                               │
-                               ▼
-                     ┌───────────────────┐
-                     │  Intent Engine    │
-                     └─────────┬─────────┘
-                               │
-                               ▼
-                     ┌───────────────────┐
-                     │   Risk Engine     │
-                     │                   │
-                     │ Budget            │
-                     │ Frequency         │
-                     │ Injection         │
-                     │ Parameters        │
-                     └─────────┬─────────┘
-                               │
-                    ┌──────────┴──────────┐
-                    │                     │
-                  DENY                   ALLOW
-                    │                     │
-                    ▼                     ▼
-                  BLOCK             Economics Engine
-                                          │
-                                          ▼
-                                  Provider Selection
-                                          │
-                                          ▼
-                                  x402 Payment Layer
-                                          │
-                                          ▼
-                              ┌──────────────────────┐
-                              │ Algorand TestNet     │
-                              │                      │
-                              │ USDC ASA Transfer    │
-                              │ GoPlausible          │
-                              │ Facilitator          │
-                              └──────────┬───────────┘
-                                         │
-                                         ▼
-                                  Service Execution
-                                         │
-                                         ▼
-                                Outcome Verification
-                                         │
-                                         ▼
-                                Reputation Engine
-                                         │
-                                         ▼
-                                  Agent Memory
-                                         │
-                                         ▼
-                                  Future Decisions
+                         ┌─────────────────────┐
+                         │       AI AGENT      │
+                         │                     │
+                         │ Goal + Budget       │
+                         └──────────┬──────────┘
+                                    │
+                                    ▼
+                         ┌─────────────────────┐
+                         │       PROTO-Y       │
+                         │  Integrity Layer    │
+                         └──────────┬──────────┘
+                                    │
+              ┌─────────────────────┼─────────────────────┐
+              │                     │                     │
+              ▼                     ▼                     ▼
+           INTENT                  RISK                ECONOMICS
+              │                     │                     │
+              └─────────────────────┼─────────────────────┘
+                                    │
+                                    ▼
+                                PROVIDER
+                                    │
+                                    ▼
+                                  x402
+                                    │
+                                    ▼
+                              ALGORAND
+                                    │
+                                    ▼
+                                 OUTCOME
+                                    │
+                                    ▼
+                                 MEMORY
 ```
 
 ---
 
-# 🤖 AI Agent Layer
+# 04 — System Flow
 
-Proto-Y uses **Groq** as the reasoning layer for agent interaction.
-
-The AI agent receives a user goal and relevant transaction information such as:
+A transaction through Proto-Y follows this lifecycle:
 
 ```text
-Goal
-Budget
-Parameters
-Transaction Context
-```
-
-The agent extracts structured intent and produces decision-oriented information for the Proto-Y pipeline.
-
-However, the LLM does **not** have authority to bypass Proto-Y's deterministic safety controls.
-
-### Security principle
-
-```text
-                 GROQ
-                  │
-                  │ proposes
-                  ▼
-        ┌─────────────────────┐
-        │      PROTO-Y        │
-        │                     │
-        │ Intent              │
-        │ Risk                │
-        │ Budget              │
-        │ Economics           │
-        │ Provider            │
-        │ Policy              │
-        └──────────┬──────────┘
-                   │
-              approves/denies
-                   │
-                   ▼
-                PAYMENT
-```
-
-This separation prevents an LLM from simply deciding:
-
-> "Yes, make the payment."
-
-Instead:
-
-> **The AI proposes. The integrity layer decides.**
-
----
-
-# 🔍 1. Intent Engine
-
-The Intent Engine determines what the agent is actually trying to accomplish.
-
-Supported intent categories include:
-
-```text
-QUERY
-ANALYSIS
-EXECUTION
-PAYMENT
-```
-
-The engine combines AI-extracted intent with deterministic classification.
-
-It also considers transaction parameters and estimated budget.
-
-This creates a structured representation of the agent's goal before money is involved.
-
----
-
-# 🛡️ 2. Risk Engine
-
-The Risk Engine evaluates whether the transaction should proceed.
-
-It performs multiple checks including:
-
-### Budget risk
-
-Transactions exceeding defined thresholds receive additional risk.
-
-### Request frequency
-
-Rapid repeated requests can increase risk.
-
-### Injection detection
-
-Suspicious patterns such as SQL injection attempts are detected.
-
-### Parameter anomalies
-
-Unexpected or suspicious transaction parameters contribute to the risk score.
-
-The system uses a risk score:
-
-```text
-0 ─────────────────────────────── 100
-│          │          │
-LOW       ESCALATE    DENY
-```
-
-Current policy:
-
-```text
-0 – 50    → ALLOW
-51 – 75   → ESCALATE
-76 – 100  → DENY
-```
-
-A denied transaction is stopped **before payment authorization**.
-
----
-
-# 💰 3. Economics Engine
-
-Passing the risk layer does not automatically mean the transaction is economically optimal.
-
-Proto-Y evaluates provider economics using:
-
-* base price
-* provider reputation
-* volume discounts
-* value ratio
-* potential savings
-
-The system calculates adjusted pricing and ranks available providers.
-
-A provider with a lower raw price is therefore not automatically considered better.
-
-Instead:
-
-```text
-Provider Value
-=
-Reputation / Adjusted Price
-```
-
-This allows the agent to reason about:
-
-> **What am I getting for what I am paying?**
-
----
-
-# 🏪 4. Provider Selection
-
-Proto-Y maintains provider-level information including:
-
-* reputation
-* success rate
-* SLA compliance
-* latency
-* transaction history
-
-Provider scoring currently uses:
-
-```text
-Provider Score =
-    (Adjusted Reputation × 0.6)
-  + (Success Rate × 0.3)
-  + (SLA Compliance × 0.1)
-```
-
-Providers are then ranked according to their calculated reliability and value.
-
-A minimum SLA requirement is also enforced.
-
-Current minimum SLA:
-
-```text
-95%
+┌─────────────┐
+│ Agent Goal  │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│   Intent    │
+│   Analysis  │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│     Risk    │
+│  Evaluation │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  Economics  │
+│   Check     │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│   Provider  │
+│  Selection  │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│    x402     │
+│  Payment    │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  Algorand   │
+│  Settlement │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│   Outcome   │
+│ Verification│
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│   Memory    │
+│   Update    │
+└─────────────┘
 ```
 
 ---
 
-# 💳 5. Real x402 Payment Layer
+# 05 — Why Proto-Y?
 
-Proto-Y implements a real **x402 payment flow on Algorand TestNet**.
+Autonomous agents introduce a different class of transaction risk.
 
-The payment lifecycle is:
+A human transaction generally has a human directly observing the action.
+
+An autonomous agent can:
 
 ```text
-Client
-  │
-  │ GET /api/v1/research
-  ▼
-Service
-  │
-  │ HTTP 402 Payment Required
-  ▼
-Client receives payment requirements
-  │
-  │ Creates signed payment payload
-  ▼
-x402 Client
-  │
-  │ payment-signature
-  ▼
-GoPlausible Facilitator
-  │
-  │ verifies / facilitates
-  ▼
-Algorand TestNet
-  │
-  │ USDC ASA transfer
-  ▼
-Settlement
-  │
-  │ payment-response
-  ▼
-Service
-  │
-  │ HTTP 200
-  ▼
-Client
+interpret
+→ decide
+→ select
+→ pay
+→ receive
+→ evaluate
 ```
 
-This is not a simulated payment.
+without requiring a human at every step.
 
-A real Algorand TestNet transaction is created and settled through the x402 facilitator.
+That creates an important infrastructure gap:
+
+### Intent ≠ Authorization
+
+An agent understanding a request does not automatically mean the resulting transaction should be allowed.
+
+### Payment ≠ Success
+
+A successful payment does not guarantee that the requested service was delivered correctly.
+
+### Provider Selection ≠ Provider Quality
+
+The cheapest provider is not necessarily the best provider.
+
+### Settlement ≠ Outcome
+
+Blockchain confirmation proves settlement—not that the requested result was useful.
+
+Proto-Y connects these layers into one transaction integrity workflow.
 
 ---
 
-# 🔗 x402 Configuration
+# 06 — Key Capabilities
 
-Current TestNet configuration:
+## 🧠 Intent Analysis
 
-```env
-ALGORAND_NETWORK=testnet
-USDC_ASA_ID=10458941
-FACILITATOR_URL=https://facilitator.goplausible.xyz
-```
+Transforms an agent's natural-language goal into a structured transaction intent.
 
-The protected research endpoint is:
+---
+
+## 🛡 Risk Evaluation
+
+Evaluates the proposed transaction against risk and policy constraints before execution.
+
+---
+
+## 📊 Economic Reasoning
+
+Evaluates whether the proposed transaction is economically sensible within the provided budget.
+
+---
+
+## 🏪 Provider Selection
+
+Evaluates available providers and selects an appropriate provider based on transaction requirements.
+
+---
+
+## 💳 x402 Payment
+
+Uses the x402 payment protocol as part of the machine-to-machine payment flow.
+
+---
+
+## ⛓ Algorand Settlement
+
+Uses Algorand TestNet for transaction settlement and verifiable blockchain state.
+
+---
+
+## 🔍 Outcome Verification
+
+Separates:
+
+**payment success**
+
+from:
+
+**actual task success**
+
+The transaction is evaluated after execution instead of treating payment as the final state.
+
+---
+
+## 🧠 Transaction Memory
+
+Stores useful transaction-level experience so future agent decisions can benefit from previous outcomes.
+
+---
+
+# 07 — The Proto-Y Control Room
+
+The frontend is designed as a **3D transaction operating system** rather than a conventional dashboard.
+
+### Central Integrity Core
+
+The central 3D engine represents Proto-Y's transaction decision layer.
+
+### Transaction Network
+
+The transaction moves through:
 
 ```text
-GET /api/v1/research?query=...
+GROQ
+ ↓
+INTENT
+ ↓
+RISK
+ ↓
+ECONOMICS
+ ↓
+PROVIDER
+ ↓
+x402
+ ↓
+ALGORAND
+ ↓
+OUTCOME
+ ↓
+MEMORY
 ```
 
-When payment is missing, the endpoint responds:
+### Live Timeline
+
+The right-side timeline provides a real-time view of transaction progression.
+
+### Execution Console
+
+The operator can provide:
+
+* transaction goal
+* budget
+
+and initiate execution through Proto-Y.
+
+### 3D State Visualization
+
+Transaction state is reflected visually through:
+
+* node activation
+* transaction particles
+* pipeline progression
+* core state
+* success/failure states
+
+---
+
+# 08 — Frontend
+
+The frontend is built as an interactive 3D control room.
+
+### Stack
+
+| Technology        | Purpose                     |
+| ----------------- | --------------------------- |
+| React             | Application UI              |
+| TypeScript        | Type-safe application logic |
+| Vite              | Frontend tooling            |
+| React Three Fiber | 3D rendering                |
+| Three.js          | 3D engine                   |
+| Framer Motion     | UI animation                |
+| Tailwind CSS      | Styling                     |
+| Lucide React      | Interface icons             |
+
+### Frontend Architecture
+
+```text
+frontend/
+│
+├── src/
+│   ├── components/
+│   │   ├── three/
+│   │   └── ui/
+│   │
+│   ├── hooks/
+│   │
+│   ├── lib/
+│   │
+│   ├── pages/
+│   │
+│   ├── App.tsx
+│   └── main.tsx
+│
+├── public/
+├── package.json
+└── vite.config.ts
+```
+
+---
+
+# 09 — Backend
+
+The backend exposes the Proto-Y execution API and orchestrates the transaction lifecycle.
+
+### Backend Stack
+
+| Technology | Purpose                |
+| ---------- | ---------------------- |
+| Node.js    | Runtime                |
+| TypeScript | Backend implementation |
+| Hono       | HTTP API               |
+| Groq       | LLM reasoning          |
+| x402       | Machine payment flow   |
+| Algorand   | TestNet settlement     |
+| USDC       | Transaction asset      |
+
+### Backend Architecture
+
+```text
+backend/
+│
+├── src/
+│   ├── agent/
+│   ├── analytics/
+│   ├── engines/
+│   ├── handlers/
+│   ├── middleware/
+│   ├── models/
+│   ├── orchestrator/
+│   ├── routes/
+│   ├── tests/
+│   ├── utils/
+│   │
+│   ├── config.ts
+│   └── index.ts
+│
+├── package.json
+└── tsconfig.json
+```
+
+---
+
+# 10 — API
+
+## Health
 
 ```http
-HTTP/1.1 402 Payment Required
+GET /health
 ```
 
-The response contains the x402 payment requirements, including:
-
-```text
-x402Version
-scheme
-network
-amount
-asset
-payTo
-maxTimeoutSeconds
-feePayer
-```
+Returns backend health and network information.
 
 ---
 
-# ⚡ Real TestNet Settlement
+## System Information
 
-The real x402 flow has been independently verified.
-
-### Verified transaction
-
-```text
-TxID:
-U3HXD63XE6C4M2IWFUOZUALA2AAWJEEA4FAFK737VQ2MZIS3EXKA
+```http
+GET /info
 ```
 
-### Payment details
-
-```text
-Network:
-Algorand TestNet
-
-Asset:
-10458941
-
-Amount:
-50000 microUSDC
-
-Payer:
-TRE22HE6KQXBA5X5TX75VP2PZCSAESXX6RO3LBTBNCHIO5773OULFOYG7E
-
-Receiver:
-QOLY2G6YEBQ4CXVOCA3CK4FOPWHORDXTCRJF56UK35JJM7OCWFDAUYVALQ
-```
-
-The transaction was independently queried against the Algorand TestNet indexer and confirmed.
-
-The resulting request returned:
-
-```text
-HTTP 200
-success: true
-```
-
-This proves that the current implementation performs an actual x402 settlement rather than merely simulating the protocol.
+Returns Proto-Y system information and configuration metadata.
 
 ---
 
-# 🔐 Payment Security
-
-Private keys are never hardcoded into the application.
-
-The agent wallet is supplied through:
-
-```env
-AGENT_PRIVATE_KEY=...
-```
-
-Groq credentials are supplied through:
-
-```env
-GROQ_API_KEY=...
-```
-
-Secrets must remain in `.env` and must never be committed to Git.
-
-The architecture follows the principle:
-
-> **No payment should occur until Proto-Y has approved the transaction.**
-
----
-
-# 🧪 6. Outcome Verification
-
-Payment success alone does not mean transaction success.
-
-Proto-Y therefore evaluates the service response after payment.
-
-The Outcome Verifier evaluates:
-
-| Metric          |  Weight |
-| --------------- | ------: |
-| Schema validity |      25 |
-| Freshness       |      20 |
-| Query matching  |      30 |
-| SLA compliance  |      15 |
-| Errors          |      10 |
-| **Total**       | **100** |
-
-The result is converted into:
-
-```text
-TRUST
-CONDITIONAL
-DISTRUST
-```
-
-This allows Proto-Y to answer a much more important question:
-
-> **Did the agent actually receive something worth paying for?**
-
----
-
-# 🧬 7. Reputation Engine
-
-Provider reputation is not static.
-
-Proto-Y updates reputation after verified outcomes.
-
-Current reputation update model:
-
-```text
-New Reputation
-=
-(0.7 × Old Reputation)
-+
-(0.3 × Outcome Score)
-```
-
-This means recent performance matters while historical reputation is still retained.
-
-Repeated good outcomes therefore strengthen a provider's reputation.
-
-Poor outcomes reduce it.
-
----
-
-# 🧠 8. Agent Memory
-
-Every transaction can become an experience.
-
-Proto-Y stores information such as:
-
-```text
-Agent
-Provider
-Intent
-Transaction
-Payment
-Outcome
-Quality Score
-Latency
-Success / Failure
-Lesson
-```
-
-The memory layer allows the system to move from:
-
-```text
-Stateless Agent
-```
-
-toward:
-
-```text
-Experience-Aware Agent
-```
-
-The goal is that future transactions can take previous experiences into account.
-
----
-
-# 🔄 Complete Agent Flow
-
-The complete Proto-Y architecture is:
-
-```text
-User Goal + Budget
-        │
-        ▼
-    Groq Agent
-        │
-        ▼
- Intent Extraction
-        │
-        ▼
-  Intent Engine
-        │
-        ▼
-   Risk Engine
-        │
-   ┌────┴────┐
-   │         │
- DENY       ALLOW
-   │         │
-   │         ▼
-   │    Economics
-   │         │
-   │         ▼
-   │   Provider Selection
-   │         │
-   │         ▼
-   │     x402 402
-   │         │
-   │         ▼
-   │  Signed Payment
-   │         │
-   │         ▼
-   │ GoPlausible Facilitator
-   │         │
-   │         ▼
-   │ Algorand TestNet
-   │         │
-   │         ▼
-   │ Settlement TxID
-   │         │
-   │         ▼
-   │ Service Execution
-   │         │
-   │         ▼
-   │ Outcome Verification
-   │         │
-   │         ▼
-   │ Reputation Update
-   │         │
-   │         ▼
-   │ Agent Memory
-   │         │
-   │         ▼
-   │   Future Decisions
-   │
- BLOCKED
-```
-
----
-
-# 🧩 Master Agent Endpoint
-
-The primary agent endpoint is:
+## Agent Execution
 
 ```http
 POST /api/agent/execute
 ```
 
-The endpoint connects the AI layer with the Proto-Y transaction integrity pipeline.
+Primary transaction execution endpoint.
 
-Conceptually:
+### Example request
 
 ```json
 {
@@ -696,10 +496,10 @@ Conceptually:
 }
 ```
 
-The request passes through:
+### Conceptual execution
 
 ```text
-Groq
+Goal
  ↓
 Intent
  ↓
@@ -711,635 +511,583 @@ Provider
  ↓
 Payment
  ↓
-Service
+Settlement
  ↓
 Outcome
- ↓
-Reputation
  ↓
 Memory
 ```
 
 ---
 
-# 🌐 API Reference
+# 11 — Frontend ↔ Backend
 
-## Health
-
-```http
-GET /health
-```
-
-Returns system status including:
-
-* network
-* USDC ASA
-* receiver address
-* Groq availability
-
----
-
-## System Information
-
-```http
-GET /info
-```
-
-Returns Proto-Y architecture and system metadata.
-
----
-
-## AI Agent Execution
-
-```http
-POST /api/agent/execute
-```
-
-Runs the complete agent-driven transaction workflow.
-
----
-
-## Agent Status
-
-```http
-GET /api/agent/status
-```
-
-Returns agent subsystem status.
-
----
-
-## Protected Research API
-
-```http
-GET /api/v1/research?query=blockchain
-```
-
-Protected by real x402 payment requirements.
-
----
-
-## Deterministic Orchestrator
-
-```http
-POST /api/orchestrate
-```
-
-Provides access to the underlying Proto-Y orchestration pipeline.
-
----
-
-# 📁 Project Structure
+The deployed architecture is:
 
 ```text
-backend/
-│
-├── src/
-│   │
-│   ├── agent/
-│   │   ├── agent.ts
-│   │   ├── groq-client.ts
-│   │   ├── prompts.ts
-│   │   └── decision-parser.ts
-│   │
-│   ├── engines/
-│   │   ├── intent-engine.ts
-│   │   ├── risk-engine.ts
-│   │   ├── economics-engine.ts
-│   │   ├── provider-engine.ts
-│   │   ├── outcome-verifier.ts
-│   │   └── reputation-engine.ts
-│   │
-│   ├── models/
-│   │   ├── request-history.ts
-│   │   ├── pricing-model.ts
-│   │   ├── provider-memory.ts
-│   │   ├── payment-storage.ts
-│   │   ├── outcome-storage.ts
-│   │   └── agent-memory.ts
-│   │
-│   ├── middleware/
-│   │   └── x402-real-middleware.ts
-│   │
-│   ├── orchestrator/
-│   │   └── proto-y-orchestrator.ts
-│   │
-│   ├── routes/
-│   │   ├── agent.ts
-│   │   ├── paid-endpoints.ts
-│   │   ├── orchestrator.ts
-│   │   ├── analysis.ts
-│   │   ├── economics.ts
-│   │   ├── provider.ts
-│   │   ├── verification.ts
-│   │   └── memory.ts
-│   │
-│   ├── handlers/
-│   │   └── research-handler.ts
-│   │
-│   ├── analytics/
-│   │   └── provider-analytics.ts
-│   │
-│   ├── utils/
-│   │   ├── x402-client.ts
-│   │   ├── facilitator-client.ts
-│   │   ├── payment-processor.ts
-│   │   ├── crypto-utils.ts
-│   │   ├── response-validator.ts
-│   │   └── provider-validator.ts
-│   │
-│   ├── config.ts
-│   ├── logger.ts
-│   ├── types.ts
-│   └── index.ts
-│
-├── .env
-├── .gitignore
-├── package.json
-└── tsconfig.json
+                VERCEL
+                  │
+                  ▼
+        ┌──────────────────┐
+        │ Proto-Y Frontend │
+        │ React + R3F      │
+        └────────┬─────────┘
+                 │
+                 │ HTTPS
+                 ▼
+                RENDER
+        ┌──────────────────┐
+        │ Proto-Y Backend  │
+        │ Hono + TypeScript│
+        └────────┬─────────┘
+                 │
+        ┌────────┼────────┐
+        ▼        ▼        ▼
+      Groq     x402    Algorand
 ```
 
----
+### Production frontend
 
-# ⚙️ Technology Stack
+[https://proto-y.vercel.app/](https://proto-y.vercel.app/)
 
-### Runtime
+### Production backend
 
-* Node.js
-* TypeScript
-
-### Backend
-
-* Hono
-* Axios
-
-### AI
-
-* Groq API
-* `openai/gpt-oss-20b`
-
-### Blockchain
-
-* Algorand
-* Algorand TestNet
-* Algorand USDC ASA
-* `algosdk`
-
-### Payments
-
-* x402 Protocol
-* `@x402-avm/core`
-* `@x402-avm/avm`
-* `@x402-avm/hono`
-* Exact AVM payment scheme
-* GoPlausible facilitator
-
-### Security / Verification
-
-* SHA-256 response proofs
-* Schema validation
-* Freshness validation
-* Query matching
-* SLA validation
-* Risk scoring
-
-### Development
-
-* TypeScript compiler
-* tsx
-* npm
-* Git
+[https://protoy-transaction-integrity-layer-for.onrender.com/](https://protoy-transaction-integrity-layer-for.onrender.com/)
 
 ---
 
-# 🧪 Testing
+# 12 — Environment Variables
 
-Proto-Y includes multiple levels of testing.
+## Frontend
 
-## Engine Tests
+The frontend requires:
+
+```env
+VITE_API_BASE_URL=https://protoy-transaction-integrity-layer-for.onrender.com
+```
+
+Frontend environment variables should contain only values intended for browser-side use.
+
+---
+
+## Backend
+
+Backend configuration includes:
+
+```env
+AGENT_PRIVATE_KEY=
+AVM_ADDRESS=
+
+FACILITATOR_URL=
+ALGORAND_NODE_URL=
+ALGORAND_NETWORK=
+
+USDC_ASA_ID=
+USDC_DECIMALS=
+
+PRICE_INTENT_ANALYSIS=
+PRICE_ECONOMICS_CHECK=
+PRICE_PROVIDER_SELECT=
+PRICE_RESEARCH_API=
+
+LLM_PROVIDER=
+GROQ_API_KEY=
+GROQ_JSON_MODEL=
+GROQ_TEXT_MODEL=
+
+PORT=
+NODE_ENV=
+LOG_LEVEL=
+
+ENABLE_FEE_ABSTRACTION=
+```
+
+Never commit private credentials or API keys to the repository.
+
+---
+
+# 13 — Local Development
+
+Clone the repository:
 
 ```bash
-npm run test:engines
+git clone https://github.com/ViivianREINE/ProtoY-Transaction-Integrity-Layer-for-Agentic-Commerce.git
+cd ProtoY-Transaction-Integrity-Layer-for-Agentic-Commerce
 ```
-
-Tests the individual decision engines.
 
 ---
 
-## HTTP Tests
+## Start the backend
 
 ```bash
-npm run test:http
-```
-
-Tests the live HTTP server and payment-protected endpoints.
-
----
-
-## End-to-End Tests
-
-```bash
-npm run test:e2e
-```
-
-The current deterministic E2E suite validates:
-
-```text
-✓ Low-risk transaction
-✓ High-risk transaction blocking
-✓ Excessive budget handling
-✓ Outcome verification
-✓ Dynamic reputation updates
-✓ Full orchestration latency
-✓ USDC ASA configuration
-```
-
----
-
-# ⚡ Real x402 Verification
-
-The real payment client can be executed against the protected endpoint.
-
-The flow is:
-
-```text
-1. GET protected endpoint
-2. Receive HTTP 402
-3. Decode payment requirements
-4. Construct Algorand payment
-5. Sign payment
-6. Send payment payload
-7. Retry request
-8. Facilitator verifies payment
-9. Algorand settles transaction
-10. Receive settlement proof
-11. Receive HTTP 200
-```
-
-The implementation also handles the canonical x402 payment header emitted by the current SDK.
-
----
-
-# 🛠️ Local Development
-
-Install dependencies:
-
-```bash
+cd backend
 npm install
-```
-
-Start the server:
-
-```bash
 npm run dev
 ```
 
-The backend runs on:
+The backend runs locally on:
 
 ```text
 http://localhost:4021
 ```
 
-Check health:
+---
+
+## Start the frontend
+
+Open another terminal:
 
 ```bash
-curl.exe http://localhost:4021/health
+cd frontend
+npm install
+npm run dev
 ```
 
-Expected response:
+The frontend runs locally on:
 
-```json
-{
-  "status": "ok",
-  "network": "testnet",
-  "usdcAsaId": 10458941,
-  "groqAvailable": true
-}
+```text
+http://localhost:5173
 ```
 
 ---
 
-# 🔐 Environment Configuration
+# 14 — Frontend Environment
 
-Create a `.env` file:
+Create:
+
+```text
+frontend/.env.local
+```
+
+Add:
 
 ```env
-ALGORAND_NETWORK=testnet
-
-USDC_ASA_ID=10458941
-
-FACILITATOR_URL=https://facilitator.goplausible.xyz
-
-AGENT_PRIVATE_KEY=<YOUR_ALGORAND_PRIVATE_KEY>
-
-AVM_ADDRESS=<YOUR_PAYMENT_RECEIVER_ADDRESS>
-
-GROQ_API_KEY=<YOUR_GROQ_API_KEY>
-
-GROQ_JSON_MODEL=openai/gpt-oss-20b
-GROQ_TEXT_MODEL=openai/gpt-oss-20b
+VITE_API_BASE_URL=http://localhost:4021
 ```
 
-### Important
+For production:
 
-Never commit:
-
-```text
-.env
-.env.local
-private keys
-API keys
-mnemonics
-seed phrases
+```env
+VITE_API_BASE_URL=https://protoy-transaction-integrity-layer-for.onrender.com
 ```
-
-to Git.
 
 ---
 
-# 🔒 Security Architecture
+# 15 — Validation
 
-Proto-Y deliberately separates **AI reasoning** from **transaction authorization**.
+Before deployment:
 
-### Groq can:
+```bash
+cd frontend
 
-```text
-Understand goals
-Extract intent
-Generate reasoning
-Summarize decisions
+npm run typecheck
+npm run lint
+npm run build
 ```
 
-### Groq cannot:
+Backend:
 
-```text
-Override risk policy
-Bypass budget controls
-Force a payment
-Approve a denied transaction
-Modify private keys
+```bash
+cd backend
+
+npm run typecheck
+npm run build
 ```
 
-The deterministic Proto-Y layer remains the final authority.
+The project should pass type checking and production builds before deployment.
 
 ---
 
-# 🏆 Why Proto-Y Is Different
+# 16 — Deployment
 
-Most agentic payment systems focus on:
+## Frontend
 
-```text
-Can the agent pay?
-```
-
-Proto-Y focuses on:
+The frontend is deployed on Vercel.
 
 ```text
-Should the agent pay?
+https://proto-y.vercel.app/
 ```
 
-And then goes one step further:
+Vercel configuration:
 
 ```text
-Was the payment worth it?
+Root Directory: frontend
+Framework: Vite
+Build Command: npm run build
+Output Directory: dist
 ```
 
-And finally:
+Production environment:
 
-```text
-What did the agent learn from the transaction?
+```env
+VITE_API_BASE_URL=https://protoy-transaction-integrity-layer-for.onrender.com
 ```
-
-This creates a feedback loop:
-
-```text
-             ┌───────────────────────┐
-             │                       │
-             ▼                       │
-       Agent Decision                │
-             │                       │
-             ▼                       │
-          Payment                   │
-             │                       │
-             ▼                       │
-          Outcome                  │
-             │                       │
-             ▼                       │
-        Reputation                  │
-             │                       │
-             ▼                       │
-        Agent Memory                │
-             │                       │
-             └──── Better Decision ──┘
-```
-
-Proto-Y therefore treats payment as a **closed-loop transaction**, rather than a one-time financial event.
 
 ---
 
-# 🎯 Hackathon Demo Flow
+## Backend
 
-The intended demonstration is:
-
-### 1. Agent receives a goal
+The backend is deployed on Render.
 
 ```text
-"Find reliable blockchain research."
+https://protoy-transaction-integrity-layer-for.onrender.com/
 ```
 
-### 2. Groq interprets the goal
+The backend handles:
 
-```text
-Intent:
-QUERY / RESEARCH
-```
-
-### 3. Proto-Y evaluates risk
-
-```text
-Risk:
-LOW
-
-Decision:
-ALLOW
-```
-
-### 4. Economics engine evaluates providers
-
-```text
-Provider A
-Provider B
-Provider C
-```
-
-The system selects the best provider based on value and reputation.
-
-### 5. x402 requests payment
-
-```text
-HTTP 402 Payment Required
-```
-
-### 6. Agent signs payment
-
-```text
-50000 microUSDC
-```
-
-### 7. GoPlausible facilitates settlement
-
-```text
-Algorand TestNet
-```
-
-### 8. Real transaction settles
-
-```text
-TxID: <real Algorand transaction>
-```
-
-### 9. Service responds
-
-```text
-HTTP 200
-```
-
-### 10. Proto-Y verifies the outcome
-
-```text
-Quality Score: XX/100
-```
-
-### 11. Reputation changes
-
-```text
-Provider reputation:
-previous → updated
-```
-
-### 12. Agent remembers
-
-```text
-Lesson stored
-```
-
-The result is not simply:
-
-> "Payment succeeded."
-
-It becomes:
-
-> **"The agent paid, verified the outcome, evaluated the provider, updated its belief, and learned from the transaction."**
+* agent execution
+* reasoning
+* transaction policy
+* risk evaluation
+* economics
+* provider selection
+* payment orchestration
+* settlement
+* outcome processing
+* memory
 
 ---
 
-# 📊 Current Validation
+# 17 — Transaction State Model
 
-The implementation has successfully demonstrated a real TestNet payment lifecycle.
-
-### Verified
+Proto-Y treats a transaction as a lifecycle rather than a single payment event.
 
 ```text
-HTTP 402
-      ↓
-Payment Requirements
-      ↓
-Signed Algorand Payment
-      ↓
-GoPlausible Facilitator
-      ↓
-Algorand TestNet
-      ↓
-Confirmed Transaction
-      ↓
-Settlement Response
-      ↓
-HTTP 200
+IDLE
+ │
+ ▼
+ANALYZING
+ │
+ ▼
+INTENT
+ │
+ ▼
+RISK
+ │
+ ├──────────────► BLOCKED
+ │
+ ▼
+ECONOMICS
+ │
+ ▼
+PROVIDER
+ │
+ ▼
+PAYMENT
+ │
+ ▼
+SETTLEMENT
+ │
+ ▼
+OUTCOME
+ │
+ ▼
+MEMORY
+ │
+ ▼
+SUCCESS
 ```
 
-The verified TestNet transaction transferred:
+Failure can occur at any stage.
+
+The frontend reflects these states through the 3D control room.
+
+---
+
+# 18 — Design Philosophy
+
+Proto-Y intentionally avoids the typical:
+
+> "AI + neon gradient + chatbot"
+
+interface.
+
+Instead, the interface is designed around the metaphor of a **transaction control plane**.
+
+### Visual principles
+
+* Dark infrastructure aesthetic
+* High information density without clutter
+* 3D spatial transaction visualization
+* Minimal glass surfaces
+* Cyan integrity signals
+* Violet reasoning signals
+* Emerald successful settlement
+* Red policy/failure states
+* Monospaced transaction metadata
+* Motion that communicates system state
+
+The interface should feel closer to:
+
+**AI infrastructure × financial terminal × transaction observability**
+
+than a traditional SaaS dashboard.
+
+---
+
+# 19 — Why This Matters
+
+The next phase of commerce is increasingly agent-mediated.
+
+Standards such as the Agentic Commerce Protocol focus on enabling buyers, agents, and businesses to complete purchases, while payment protocols such as x402 address machine-to-machine payment flows. ([GitHub][2])
+
+Proto-Y focuses on a complementary problem:
+
+> **What happens between an agent deciding to transact and the transaction becoming final?**
+
+That layer needs to reason about:
+
+```text
+INTENT
+RISK
+ECONOMICS
+PROVIDER
+PAYMENT
+SETTLEMENT
+OUTCOME
+MEMORY
+```
+
+Proto-Y is designed as that missing control plane.
+
+---
+
+# 20 — Example
+
+An autonomous agent receives:
+
+```text
+"Find the latest blockchain research."
+```
+
+with a budget of:
 
 ```text
 50,000 microUSDC
 ```
 
-using:
+Instead of immediately spending:
 
 ```text
-USDC ASA: 10458941
+Agent
+  ↓
+Payment
 ```
 
-and produced a real Algorand transaction ID.
-
----
-
-# 🗺️ Current Scope & Next Stage
-
-This repository currently focuses on the **backend transaction-integrity system**.
-
-Implemented:
+Proto-Y evaluates:
 
 ```text
-AI Agent
+Agent Goal
     ↓
-Proto-Y
+Intent Analysis
+    ↓
+Risk Evaluation
+    ↓
+Economic Validation
+    ↓
+Provider Selection
+    ↓
+Payment Authorization
     ↓
 x402
     ↓
-Algorand TestNet
+Algorand Settlement
     ↓
-Outcome
+Outcome Verification
     ↓
-Reputation
-    ↓
-Memory
+Transaction Memory
 ```
 
-Future stages include:
+The user can see this entire lifecycle through the Proto-Y Control Room.
+
+---
+
+# 21 — Project Structure
 
 ```text
-                 CURRENT
-                    │
-                    ▼
-          TestNet Backend
-                    │
-                    ▼
-             ┌─────────────┐
-             │   NEXT      │
-             │             │
-             │ Frontend    │
-             │ MainNet     │
-             └─────────────┘
+ProtoY-Transaction-Integrity-Layer-for-Agentic-Commerce/
+│
+├── backend/
+│   ├── src/
+│   │   ├── agent/
+│   │   ├── analytics/
+│   │   ├── engines/
+│   │   ├── handlers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── orchestrator/
+│   │   ├── routes/
+│   │   ├── tests/
+│   │   └── utils/
+│   │
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── three/
+│   │   │   └── ui/
+│   │   ├── hooks/
+│   │   ├── lib/
+│   │   ├── pages/
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   │
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.ts
+│
+├── LICENSE
+├── README.md
+└── .gitignore
 ```
 
-Frontend and MainNet deployment are intentionally outside the scope of this version.
+---
+
+# 22 — Technology Overview
+
+```text
+┌──────────────────────────────────────────────────┐
+│                    PROTO-Y                       │
+├──────────────────────────────────────────────────┤
+│                                                  │
+│  Frontend                                        │
+│  React • TypeScript • Vite • Three.js • R3F     │
+│                                                  │
+│  AI                                               │
+│  Groq                                             │
+│                                                  │
+│  Transaction Layer                                │
+│  Intent • Risk • Economics • Provider            │
+│                                                  │
+│  Payment                                          │
+│  x402                                             │
+│                                                  │
+│  Settlement                                       │
+│  Algorand TestNet                                 │
+│                                                  │
+│  Asset                                            │
+│  USDC                                             │
+│                                                  │
+│  Backend                                          │
+│  Node.js • TypeScript • Hono                     │
+│                                                  │
+│  Deployment                                       │
+│  Vercel • Render                                  │
+│                                                  │
+└──────────────────────────────────────────────────┘
+```
 
 ---
 
-# 📜 License
+# 23 — Roadmap
 
-Copyright 2026 Shreya Jha
+### ✓ Phase 1 — Transaction Integrity Core
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at:
+* Intent analysis
+* Risk evaluation
+* Economic reasoning
+* Provider selection
+* Payment orchestration
+* Settlement
+* Outcome verification
+* Memory
 
-[https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
+### ✓ Phase 2 — Agentic Payment Rail
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+* x402 integration
+* USDC transaction flow
+* Algorand TestNet settlement
 
-See `LICENSE` for the complete Apache License 2.0 text.
+### ✓ Phase 3 — 3D Control Room
+
+* Interactive transaction network
+* Integrity Core
+* Transaction particle
+* Live pipeline
+* State visualization
+
+### ✓ Phase 4 — Production Web Deployment
+
+* Vercel frontend
+* Render backend
+* Production API integration
+
+### → Future
+
+* Agent identity and authorization
+* Persistent transaction ledger
+* Advanced fraud detection
+* Provider reputation learning
+* Multi-chain settlement
+* Policy authoring interface
+* Transaction replay and audit trails
+* Human-in-the-loop approval policies
+* Production-grade authentication and authorization
 
 ---
 
-# 🚀 Proto-Y
+# 24 — Project Philosophy
 
-> **Don't just let agents pay.**
->
-> **Make them earn the right to pay.**
+Proto-Y is built around one principle:
 
-[1]: https://www-eu.apache.org/legal/apply-license?utm_source=chatgpt.com "Applying the Apache license, version 2.0 | Apache Software Foundation"
+> **Autonomy should not mean opacity.**
+
+An autonomous agent should be able to act quickly without making its transactions impossible to understand.
+
+Every important transaction should have:
+
+```text
+an intent
+a risk assessment
+an economic rationale
+a provider decision
+a payment path
+a settlement state
+an outcome
+and a memory
+```
+
+That is the purpose of Proto-Y.
+
+---
+
+# 25 — License
+
+This project is licensed under the **Apache License 2.0**.
+
+See [`LICENSE`](LICENSE) for the complete license text.
+
+---
+
+# 26 — Links
+
+### ◉ Live Application
+
+[https://proto-y.vercel.app/](https://proto-y.vercel.app/)
+
+### ◉ Backend API
+
+[https://protoy-transaction-integrity-layer-for.onrender.com/](https://protoy-transaction-integrity-layer-for.onrender.com/)
+
+### ◉ Repository
+
+[https://github.com/ViivianREINE/ProtoY-Transaction-Integrity-Layer-for-Agentic-Commerce](https://github.com/ViivianREINE/ProtoY-Transaction-Integrity-Layer-for-Agentic-Commerce)
+
+---
+
+# 27 — Built For Agentic Commerce
+
+Proto-Y explores what the infrastructure between **AI autonomy and financial execution** could look like.
+
+Not another chatbot.
+
+Not another payment button.
+
+A transaction integrity layer.
+
+**Agent decides.
+Proto-Y verifies.
+The transaction settles.
+The outcome is remembered.**
