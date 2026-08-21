@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { serve } from '@hono/node-server';
-import { PORT, ALGORAND_CONFIG, USDC_CONFIG, AVM_ADDRESS } from './config.js';
+import { PORT, ALGORAND_CONFIG, USDC_CONFIG, AVM_ADDRESS, FACILITATOR_CONFIG } from './config.js';
 import { logInfo, logX402 } from './logger.js';
 import { analysisRouter } from './routes/analysis.js';
 import { economicsRouter } from './routes/economics.js';
@@ -71,7 +71,7 @@ app.get('/info', (c) => {
     description: 'Autonomous Transaction Integrity Layer for Agentic Commerce — x402 on Algorand TestNet',
     network: ALGORAND_CONFIG.network,
     usdcAsaId: USDC_CONFIG.asaId,
-    faciltiatorUrl: 'https://facilitator.goplausible.xyz',
+    facilitatorUrl: FACILITATOR_CONFIG.url,
     agentAddress: AVM_ADDRESS,
     groqEnabled: isGroqAvailable(),
     layers: [
@@ -130,7 +130,7 @@ console.log(`\n✓ Proto-Y v2.0 starting on http://localhost:${PORT}`);
 logInfo(`Algorand Network: ${ALGORAND_CONFIG.network}`);
 logInfo(`USDC ASA ID: ${USDC_CONFIG.asaId}`);
 logInfo(`Receiver (payTo): ${AVM_ADDRESS}`);
-logInfo(`Facilitator: https://facilitator.goplausible.xyz`);
+logInfo(`Facilitator: ${FACILITATOR_CONFIG.url}`);
 logX402(`x402 Real Protocol: @x402-avm/hono SDK (GoPlausible)`);
 logInfo(`Groq AI Agent: ${isGroqAvailable() ? '✅ ENABLED' : '⚠️  GROQ_API_KEY not set — Groq disabled, deterministic fallback active'}`);
 

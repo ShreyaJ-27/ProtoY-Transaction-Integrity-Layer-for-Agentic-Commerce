@@ -3,11 +3,19 @@ import { ProviderOption } from './types.js';
 
 dotenv.config();
 
+function requiredEnv(name: string): string {
+  const value = process.env[name]?.trim();
+  if (!value) {
+    throw new Error(`${name} must be set in backend/.env`);
+  }
+  return value;
+}
+
 export const PORT = parseInt(process.env.PORT || '4021', 10);
 export const NODE_ENV = process.env.NODE_ENV || 'development';
 export const LOG_LEVEL = process.env.LOG_LEVEL || 'debug';
 
-export const AVM_ADDRESS = process.env.AVM_ADDRESS || 'QOLY2G6YEBQ4CXVOCA3CK4FOPWHORDXTCRJF56UK35JJM7OCWFDAUYVALQ';
+export const AVM_ADDRESS = requiredEnv('AVM_ADDRESS');
 
 export const ALGORAND_CONFIG = {
   network: process.env.ALGORAND_NETWORK || 'testnet',
